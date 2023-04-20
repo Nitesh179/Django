@@ -3,7 +3,9 @@ from django.urls import path,include
 from Xmen import views
 
 urlpatterns = [
-    path('',views.index,name='home'),
+    # path('',views.index,name='home'),
+    path('form/',views.studentinput,name='studentform'),
+    
     path('contact/',views.contact,name='contact'),
     path('customer/',views.customer,name='customerDetail'),
     path('add/',views.ADD,name="addcustomer"),

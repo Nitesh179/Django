@@ -3,7 +3,7 @@ from datetime import datetime
 from Xmen.models import Contact
 from Xmen.models import Customer
 from django.contrib import messages
-
+from Xmen.forms import Stud_form
  
 
 # Create your views here.
@@ -83,3 +83,15 @@ def delete(request,id):
     customer.delete()
     return redirect('customerDetail')
     # return redirect(request,'customer.html',{'customers':customer})
+
+def studentinput(request):
+    send=False
+    # forme=forms.Stud_form()
+    if request.method=='POST':
+        form=Stud_form(request.POST)
+        if form.is_valid():
+            print("Form is validate....")
+            send=True
+    forme=Stud_form()    
+    return render(request,"index1.html",{'form':forme,'send':send})
+
