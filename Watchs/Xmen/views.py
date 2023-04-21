@@ -3,7 +3,8 @@ from datetime import datetime
 from Xmen.models import Contact
 from Xmen.models import Customer
 from django.contrib import messages
-from Xmen.forms import Stud_form
+from Xmen.forms import Stud_form, ItemAddForm
+
  
 
 # Create your views here.
@@ -95,3 +96,33 @@ def studentinput(request):
     forme=Stud_form()    
     return render(request,"index1.html",{'form':forme,'send':send})
 
+
+def indx(request):
+    return render(request,"home.html") 
+
+
+# store data in cookie :
+'''def addItem(request):
+    form=ItemAddForm()
+    res=render(request,'addItem.html',{'forms':form})
+    if request.method == 'POST':
+        form=ItemAddForm(request.POST)
+        if form.is_valid():
+           name =form.cleaned_data['itemName']
+           qty =form.cleaned_data['itemQty']
+           res.set_cookie(name,qty,180)
+    return res'''
+
+# store data in Session :
+def addItem(request):
+    form=ItemAddForm()
+   
+    if request.method == 'POST':
+       name=request.POST['itemName']
+       qty=request.POST['itemQty']
+       request.session[name]=qty
+    return render(request,'addItem.html',{'forms':form})    
+         
+
+def displayItem(request):
+    return render(request,'showitem.html')

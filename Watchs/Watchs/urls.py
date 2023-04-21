@@ -22,5 +22,5 @@ urlpatterns = [
     path('xmen/',include('Xmen.urls')),
     path('',include('Xmen.urls')),
    
-
+    path('cart/',include('Xmen.urls')),
 ]
