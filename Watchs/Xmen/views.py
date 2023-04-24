@@ -124,5 +124,5 @@ def addItem(request):
     return render(request,'addItem.html',{'forms':form})    
          
 
-def displayItem(request):
+def displayItem(request):   
     return render(request,'showitem.html')
