@@ -21,14 +21,14 @@ def contact(request):
     # return HttpResponse("This is contact page")
     return render(request,"contact.html")
 
-@login_required(login_url="/user")
+# @login_required(login_url="/user")
 def logn(request):
     lemail=request.POST['loginemail']
     lpass=request.POST['loginpass']
 
     user=authenticate(username=lemail, password=lpass)
-    print("==> ",user)
-    if user is not None:
+
+    if user is  None:
         login(request, user)
         messages.success(request, "user login succesfully....")
         return redirect('home')
