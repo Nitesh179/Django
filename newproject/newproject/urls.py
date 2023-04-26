@@ -17,10 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
+from apiapp.views import student_detail, student_list, student_create
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app1.urls')),
-    path('login/',views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/',views.LogoutView.as_view(), {'next_page': '/'}, name='login')
+    path('studentinfo/<int:val>',student_detail),
+    path('studentlist/',student_list),
+    path('studentcreate/',student_create)
+     
+    # path('login/',views.LoginView.as_view(template_name='login.html'), name='login'),
+    # path('logout/',views.LogoutView.as_view(), {'next_page': '/'}, name='login')
 ]
