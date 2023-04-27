@@ -5,7 +5,11 @@ class EmployeeSerializers(serializers.Serializer):
     name=serializers.CharField(max_length=200)
     desg=serializers.CharField(max_length=200)
     age=serializers.IntegerField()
-    doj=serializers.DateField()
+    doj=serializers.DateField(format="%d-%m-%Y")
+    # other way to implement :
+    # class meta:
+    #     modal=Employee
+    #     fields="__all__"
 
     def create(self, validated_data):
         return Employee.objects.create(**validated_data)
@@ -14,7 +18,7 @@ class EmployeeSerializers(serializers.Serializer):
         instance.name=validate_data.get('name', instance.name)
         instance.desg=validate_data.get('desg', instance.desg)
         instance.age=validate_data.get('age', instance.age)
-        instance.Doj=validate_data.get('Doj', instance.Doj)
+        instance.doj=validate_data.get('Doj', instance.doj)
 
         instance.save()
         return instance

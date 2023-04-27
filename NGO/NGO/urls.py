@@ -1,5 +1,5 @@
 """
-URL configuration for newproject project.
+URL configuration for NGO project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,23 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views
-from apiapp.views import student_detail, student_list, student_create
-from crudapp.views import employee_detail,employee_api
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('app1.urls')),
-    path('studentinfo/<int:val>',student_detail),
-    path('studentlist/',student_list),
-    path('studentcreate/',student_create),
-     
-
-
-    path('employeeinfo/',employee_api),
-    # path('employeelist/',employee_list),
-    # path('employeecreate/',employee_create) 
-    # path('login/',views.LoginView.as_view(template_name='login.html'), name='login'),
-    # path('logout/',views.LogoutView.as_view(), {'next_page': '/'}, name='login')
+    path('',include('employees.urls')),
+    
 ]

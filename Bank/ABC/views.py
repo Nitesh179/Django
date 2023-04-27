@@ -75,9 +75,8 @@ def loginn(request):
         return render(request, "login/signup.html", {'signup':False})
        
 
-def logout(request):
-    
-    super
+def logoutt(request):
+    logout(request)
     messages.info(request, "Logged Out Succesfully...")
     return redirect('home')
     
