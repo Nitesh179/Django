@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block title %}user Authenticate{% endblock title %}
-
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
-
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}"> 
+{% endblock extracss %}
 {% include 'csslink.html' %}
 
 {% block body %}
