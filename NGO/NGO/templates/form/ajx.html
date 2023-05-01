@@ -1,0 +1,121 @@
+<script>
+    $('#mainForm').on('submit', function(e) {
+      
+        //var file=$('#input-file').prop('files')[0];
+        const file=$('#input-file')[0].files[0]
+       e.preventDefault();
+     
+        var formdata = $('#mainForm').serializeArray();
+            //formdata.push({name: 'propic' , value: file});
+        var jsonData={}
+
+        for (i=0;i<formdata.length;i++){
+            jsonData[formdata[i]['name']] = formdata[i]['value']
+        }
+
+        data=JSON.stringify(jsonData)
+           
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "/formsubmit",
+                data: data,  
+                processData: false,
+                dataType:'json',
+                contentType:false,
+
+             success:function(data){  
+                console.log("|=> ",data)  
+                alert('Data Saved !!!'); }
+        });
+      
+   });
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} //  type:"POST",
+//  url: "{% url 'handlesubmit' %}",
+//   enctype:'multipart/form-data',
+//  processData: false,
+//  contentType: 'text/html',
+//  data: {
+//          //csrfmiddlewaretoken:'{{csrf_token}}',
+//          propic: $('#input-file').prop('files')[0],
+//          name:$("#name").val(),
+//          dob :$("#dob").val(),            
+//          contact:$("#contact").val(),
+//          email:$("#email").val(),
+//          maritialstatus :$("#maritialstatus").val(),
+//          gender :$("#gender").val(),
+// 
+//          state :$("#statechoice").val(),
+//          city :$("#citychoice").val(),
+//          zip :$("#zip").val(),
+//          address :$("#address").val(),
+//          bankname :$("#bankname").val(),
+//          accountno :$("#accountno").val(),
+//          branch :$("#branch").val(),
+//          ifsc :$("#ifsc").val(),
+//         
+//          feedback :$("#feedback").val(),   {% endcomment %}
+
+
+ {% comment %} 
+  const fd=new FormData()
+
+  var x=$('form').serializeArray()
+
+  for (let i = 0; i<x.length; i++) {
+      let d=x[i];
+       debugger
+
+    fd.append(` ${d.name}`, `${d.value} `);   }    
+
+           console.log("=> ",fd)
+ {% endcomment %}
+
+
+
+ {% comment %} 
+ 
+  "propic": $('#input-file').prop('files')[0],
+                "name":$("#name").val(),
+                "dob" :$("#dob").val(),            
+                "contact":$("#contact").val(),
+                "email":$("#email").val(),
+                "maritialstatus" :$("#maritialstatus").val(),
+                "gender" :$("#gender").val(),
+       
+                "state" :$("#statechoice").val(),
+                "city" :$("#citychoice").val(),
+                "zip" :$("#zip").val(),
+                "address" :$("#address").val(),
+                "bankname" :$("#bankname").val(),
+                "accountno" :$("#accountno").val(),
+                "branch" :$("#branch").val(),
+                "ifsc" :$("#ifsc").val(),
+               
+                "feedback" :$("#feedback").val(),
+ 
+ {% endcomment %}
