@@ -35,6 +35,9 @@ var v = jQuery("#mainform").validate({
 
 $("#submit").click(function () {
     if (v.form()) {
-      
+        $('#spinner').css('display',"block")
     }
 });
+
+
+

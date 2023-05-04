@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'sentiment_analysis.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sentimentdb', 
+        'NAME': 'analysisdb', 
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': '127.0.0.1', 
@@ -131,3 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS=[os.path.join(BASE_DIR, "static")]
 
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
+ 

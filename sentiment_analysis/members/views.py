@@ -7,11 +7,16 @@ from django.views import View
 import io, urllib.parse
 import urllib, base64
 import datetime, json
+from django.contrib import messages
+from members.models import Sentiment
 
 matplotlib.use('Agg')
- 
+
+
 def index(req):
-    args = {'image':False}
+    data=Sentiment.objects.all()
+
+    args = {'image':False,'data':data}
     return render(req, "index.html",args) 
 
 def sentimentAnalysis(request):
@@ -22,7 +27,9 @@ def sentimentAnalysis(request):
     if request.method=='POST':
         inputtext=request.POST['title']
         inputnumber=request.POST['record']
-        analysis_Data['date']=datetime.datetime.now()
+       
+
+        analysis_Data['date']=datetime.datetime.now().strftime('%x')
         analysis_Data['search']=inputtext
         analysis_Data['no_tweets']=inputnumber
 
@@ -92,6 +99,14 @@ def downloadData(request, inputnumber, inputtext, tweets, tweetText, analysis_Da
     csvWriter.writerow(tweetText)
     csvFile.close()
 
+    sent_list=[positive, wpositive, spositive, negative, wnegative, snegative, neutral]
+  
+    result_bool = all(not i for i in sent_list)
+
+    if result_bool:  
+        messages.error(request, f"No sentiment available {searchTerm}!!!")
+        return render(request, "index.html",{"image":False})
+
     # finding average of how people are reacting
     positive = percentage(positive, NoOfTerms)
     wpositive = percentage(wpositive, NoOfTerms)
@@ -101,8 +116,12 @@ def downloadData(request, inputnumber, inputtext, tweets, tweetText, analysis_Da
     snegative = percentage(snegative, NoOfTerms)
     neutral = percentage(neutral, NoOfTerms)
 
+   
+
     # finding average reaction
+
     polarity = polarity / NoOfTerms
+    # breakpoint()     
 
     # printing out data
     print("How people are reacting on " + searchTerm + " by analyzing " + str(NoOfTerms) + " tweets.")
@@ -134,18 +153,23 @@ def downloadData(request, inputnumber, inputtext, tweets, tweetText, analysis_Da
     print(str(snegative) + "% people thought it was strongly negative")
     print(str(neutral) + "% people thought it was neutral")
 
-    analysis_Data['sentiments'] = [positive, neutral, negative]
+    analysis_Data['sentiments'] = {'positive':positive, 'neutral':neutral, 'negative':negative}
 
-     # data is collected store in database:
-       
+    # data is collected store in database:
+
     def default(o):
         if isinstance(o, (datetime.date, datetime.datetime)):
             return o.isoformat()
         
     print("report ==> ",analysis_Data)
-    json_analysis_data=json.dumps(analysis_Data, default=default)
+    json_analysis_data=json.loads(json.dumps(analysis_Data, default=default))
+    
+    # breakpoint()
+    sent_data=Sentiment(data = json_analysis_data)
+    sent_data.save()
 
     return plotPieChart(request, positive, wpositive, spositive, negative, wnegative, snegative, neutral, searchTerm, NoOfTerms)
+
 
 def cleanTweet(tweet):
     # Remove Links, Special Characters etc from tweet
@@ -173,10 +197,12 @@ def plotPieChart(request, positive, wpositive, spositive, negative, wnegative, s
     buf.seek(0)
     string=base64.b64encode(buf.read())
     uri='data:image/png;base64,' + urllib.parse.quote(string)
-    # breakpoint()
-    # plt.show()
+    
     plt.close()
-    args = {'image':uri}
+    data=Sentiment.objects.all().order_by('-id')
+   
+   
+    args = {'image':uri,'data':data}
     return render(request, "index.html",args)
 
 
