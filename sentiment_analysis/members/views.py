@@ -9,17 +9,28 @@ import urllib, base64
 import datetime, json
 from django.contrib import messages
 from members.models import Sentiment
+from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 
 matplotlib.use('Agg')
 
 
 def index(req):
-    data=Sentiment.objects.all()
-
+   
+    data_org=Sentiment.objects.all().order_by('-id')
+    p=Paginator(data_org,7)
+    page_no=req.GET.get('page')
+    try:
+        data=p.get_page(page_no)
+    except PageNotAnInteger :
+        data=p.get_page(1)
+    except EmptyPage :
+        data=p.get_page(p.num_pages)
+        
     args = {'image':False,'data':data}
     return render(req, "index.html",args) 
 
 def sentimentAnalysis(request):
+   
     tweets=[]
     tweetText=[]
     analysis_Data={}
@@ -199,9 +210,17 @@ def plotPieChart(request, positive, wpositive, spositive, negative, wnegative, s
     uri='data:image/png;base64,' + urllib.parse.quote(string)
     
     plt.close()
-    data=Sentiment.objects.all().order_by('-id')
-   
-   
+
+    data_org=Sentiment.objects.all().order_by('-id')
+    p=Paginator(data_org,5)
+    page_no=request.GET.get('page')
+    try:
+        data=p.get_page(page_no)
+    except PageNotAnInteger :
+        data=p.get_page(1)
+    except EmptyPage :
+        data=p.get_page(p.num_pages)
+
     args = {'image':uri,'data':data}
     return render(request, "index.html",args)
 
