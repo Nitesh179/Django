@@ -1,8 +1,8 @@
-from django.shortcuts import render,HttpResponse, redirect
+from django.shortcuts import render,HttpResponse
 import matplotlib.pyplot as plt
 import matplotlib
 from textblob import TextBlob
-import sys,tweepy,csv,re
+import tweepy,re
 from django.views import View
 import io, urllib.parse
 import urllib, base64
@@ -65,11 +65,7 @@ def downloadData(request, inputnumber, inputtext, tweets, tweetText, analysis_Da
 
     # searching for tweets
     tweets = tweepy.Cursor(api.search_tweets, q=searchTerm, lang = "en").items(NoOfTerms)
-    # Open/create a file to append data to
-    csvFile = open('result.csv', 'a')
-
-    # Use csv writer
-    csvWriter = csv.writer(csvFile)
+    
 
     # creating some variables to store info
     polarity = 0
@@ -105,11 +101,7 @@ def downloadData(request, inputnumber, inputtext, tweets, tweetText, analysis_Da
                 negative += 1
             elif (analysis.sentiment.polarity > -1 and analysis.sentiment.polarity <= -0.6):
                 snegative += 1 
-
-    # Write to csv and close csv file
-    csvWriter.writerow(tweetText)
-    csvFile.close()
-
+ 
     sent_list=[positive, wpositive, spositive, negative, wnegative, snegative, neutral]
   
     result_bool = all(not i for i in sent_list)
@@ -132,7 +124,7 @@ def downloadData(request, inputnumber, inputtext, tweets, tweetText, analysis_Da
     # finding average reaction
 
     polarity = polarity / NoOfTerms
-    # breakpoint()     
+   
 
     # printing out data
     print("How people are reacting on " + searchTerm + " by analyzing " + str(NoOfTerms) + " tweets.")
@@ -175,7 +167,7 @@ def downloadData(request, inputnumber, inputtext, tweets, tweetText, analysis_Da
     print("report ==> ",analysis_Data)
     json_analysis_data=json.loads(json.dumps(analysis_Data, default=default))
     
-    # breakpoint()
+   
     sent_data=Sentiment(data = json_analysis_data)
     sent_data.save()
 
@@ -201,7 +193,7 @@ def plotPieChart(request, positive, wpositive, spositive, negative, wnegative, s
     plt.title('How people are reacting on ' + searchTerm + ' by analyzing ' + str(noOfSearchTerms) + ' Tweets.')
     plt.axis('equal') 
 
-    # image process :
+    # image store process :
 
     buf=io.BytesIO()
     plt.savefig(buf,format='png' ) 
@@ -209,8 +201,10 @@ def plotPieChart(request, positive, wpositive, spositive, negative, wnegative, s
     string=base64.b64encode(buf.read())
     uri='data:image/png;base64,' + urllib.parse.quote(string)
     
+    # instance close :
     plt.close()
 
+    #  fetch data
     data_org=Sentiment.objects.all().order_by('-id')
     p=Paginator(data_org,5)
     page_no=request.GET.get('page')
