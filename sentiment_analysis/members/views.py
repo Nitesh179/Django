@@ -206,7 +206,7 @@ def plotPieChart(request, positive, wpositive, spositive, negative, wnegative, s
 
     #  fetch data
     data_org=Sentiment.objects.all().order_by('-id')
-    p=Paginator(data_org,5)
+    p=Paginator(data_org,7)
     page_no=request.GET.get('page')
     try:
         data=p.get_page(page_no)
