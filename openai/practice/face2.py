@@ -4,7 +4,7 @@ from time import time
 import numpy as np
 from playsound import playsound
  
-
+ 
 mp_drawing=mp.solutions.drawing_utils
 mp_drawing_style=mp.solutions.drawing_styles
 mp_facemesh=mp.solutions.face_mesh
@@ -13,6 +13,7 @@ denormalize_coordinates = mp_drawing._normalized_to_pixel_coordinates
 mp_face=mp_facemesh.FaceMesh(max_num_faces=2,   refine_landmarks=True )
 
 cap=cv2.VideoCapture(0)
+breakpoint()
  
 # The chosen 12 points:   P1,  P2,  P3,  P4,  P5,  P6
 chosen_left_eye_idxs  = [362, 385, 387, 263, 373, 380]
@@ -46,9 +47,7 @@ def get_ear(landmarks, refer_indx, frame_w, frame_h):
             ear=0.0
             coords_points=None
 
-        return ear, coords_points      
-    
-      
+        return ear, coords_points           
 
 def calc_avg(landmarks, left_eye_idxs, right_eye_idxs, img_w, img_h):
       left_ear, left_coordinates= get_ear(landmarks,left_eye_idxs, img_w, img_h )
@@ -77,6 +76,7 @@ while True:
 
     cpy_frames=frames.copy()
     imgH, imgW, _ = cpy_frames.shape
+     
 
    
 
@@ -133,5 +133,6 @@ while True:
 
 
     cv2.imshow("Face Detection", cpy_frames)
+    cv2.imshow("RGB", frames)
     if cv2.waitKey(2)==27:
             break

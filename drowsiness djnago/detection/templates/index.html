@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+ 
+{% load static %} 
+
+  {% block extracss %}
+    <link rel="stylesheet" href="{% static '/style.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  {% include 'link.html' %}
+  {% endblock extracss %}
+   
+{% block body %}
+{% if {% url 'live_camera' %} %}
+<div class="container">
+  <img width="100%" hight="auto" src="{% url 'live_camera' %}">
+</div>
+
+
+
+{% endif %}
+<div class="loader">
+  <div class="message mb-3">Driver Drowsiness Detection</div>
+  <div class="container">
+      <img width="100%" hight="auto" src="https://www.mdpi.com/applsci/applsci-11-08441/article_deploy/html/images/applsci-11-08441-g001.png" alt="">
+  </div>
+
+  <div class="dots"><div class="center"></div></div>
+  <div class="subMessage">You Snooze, You Loose. <br> Don't Drive Drowsy<br>Can You Try this!! </div>
+  <form action="show">
+    <input  onMouseOut="this.style.color='orange'" onMouseOver="this.style.color='black'" type="submit" class="btn btn-outline-warning mt-2 mb-2 fs-5 fw-bolder  "  value="Start Now">
+  </form>
+</div>
+
+
+
+{% endblock body %}

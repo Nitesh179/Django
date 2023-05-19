@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+ 
+{% load static %} 
+
+  {% block extracss %}
+    <link rel="stylesheet" href="{% static '/style.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  {% include 'link.html' %}
+  {% endblock extracss %}
+   
+{% block body %}
+ 
+  <div class="container">
+  <form method="post" action="login">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="col-md-6">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+    </div>
+
+    <input type="submit" value="Login">
+  </form>
+</div>
+
+
+
+{% endblock body %}
