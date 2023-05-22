@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 
 cap=cv2.VideoCapture(0)
+# cv2.namedWindow("My ESP 32", cv2.WINDOW_AUTOSIZE)
 fourcc=cv2.VideoWriter_fourcc(*'MJPG')
 
 height=cap.get(cv2.CAP_PROP_FRAME_HEIGHT)

@@ -5,6 +5,7 @@ face_cap=cv2.CascadeClassifier('../opencvfile/haar-cascade-files/haarcascade_fro
 eye_cap=cv2.CascadeClassifier('../opencvfile/haar-cascade-files/haarcascade_eye.xml')
 
 cap=cv2.VideoCapture("../video/human.mp4")
+# cv2.namedWindow("My ESP 32", cv2.WINDOW_AUTOSIZE)
 
 
 while True:
