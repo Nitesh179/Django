@@ -1,7 +1,7 @@
 # from llama_index import SimpleDirectoryReader, GPTSimpleVectorIndex, LLMPredictor, ServiceContext
 # import openai
-from llama_index import SimpleDirectoryReader, LLMPredictor, ServiceContext
-from llama_index.indices.vector_store  import GPTSimpleVectorIndex
+from llama_index import SimpleDirectoryReader,GPTVectorStoreIndex,  LLMPredictor, ServiceContext
+from gradio.components import component
 import gradio as gr
 from langchain import OpenAI
 import os
@@ -21,19 +21,19 @@ def construct_index(directory_path):
 
     docs = SimpleDirectoryReader(directory_path).load_data()
 
-    index = GPTSimpleVectorIndex.from_documents(docs, service_context=service_context)
+    index = GPTVectorStoreIndex.from_documents(docs, service_context=service_context)
 
     index.save_to_disk('index.json')
 
     return index
 
 def chatbot(input_text):
-    index = GPTSimpleVectorIndex.load_from_disk('index.json')
+    index = GPTVectorStoreIndex.load_from_disk('index.json')
     response = index.query(input_text, response_mode="compact")
     return response.response
 
 iface = gr.Interface(fn=chatbot,
-                     inputs=gr.inputs.Textbox(lines=7, label="Enter your text"),
+                     inputs=gr.Textbox(lines=7, label="Enter your text"),
                      outputs="text",
                      title="Custom-trained AI Chatbot")
 
