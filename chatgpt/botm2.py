@@ -9,7 +9,7 @@ from langchain.document_loaders import TextLoader, PyPDFLoader
 from langchain.llms import OpenAI
 import os
 
-os.environ["OPENAI_API_KEY"]="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"
+os.environ["OPENAI_API_KEY"]="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"
 # loader = TextLoader("store/f1.txt" )
 loader=PyPDFLoader('store/user.pdf')
 
@@ -39,7 +39,8 @@ dq=RetrievalQA.from_chain_type(llm=OpenAI(), chain_type="stuff", retriever=retri
 while True:
     query=input(">> ")
     result = dq({"query": query})
+
     if query=="by": break
     
-    print("AI:", result['result'])
+    print("AI:", result['result'],"\n")
     

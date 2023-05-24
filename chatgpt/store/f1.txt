@@ -1,40 +1,21 @@
-The Oriental Insurance Company Ltd. was incorporated at Mumbai on 12th September 1947. The Company was a wholly owned subsidiary of The Oriental Government Security Life Assurance Company Ltd and was formed to carry out General Insurance business. The Company was a subsidiary of Life Insurance Corporation of India from 1956 to 1973 ( till the General Insurance Business was nationalized in the country). In 2003 all shares of our Company held by the General Insurance Corporation of India were transferred to the Central Government.
-
-The Company is a pioneer in laying down systems for smooth and orderly conduct of the business. The strength of the Company lies in its highly trained and motivated work force that covers various disciplines and has vast expertise. Oriental specializes in devising special covers for large projects like power plants, petrochemical, steel and chemical plants. The Company has developed various types of insurance covers to cater to the needs of both the urban and rural population of India. The Company has a technically qualified and competent team of professionals to render the best customer service.
-
-Oriental Insurance made a modest beginning with a first year premium of Rs.99,946 in 1950. The goal of the Company was “Service to clients” and achievement thereof was helped by the strong traditions built up overtime.
-
-ORIENTAL with its Head Office at New Delhi has 29 Regional Offices and nearly 1800+ operating offices in various cities of the country. The Company has overseas operations in Nepal, Kuwait and Dubai and has a total strength of around 13500 employees. From less than a lakh at its inception, the gross premium went up to Rs.58 crores in 1973 and at the end of the year 2018-19 the premium figure stood at Rs.13199  crores.
-
-To ensure that we :
-
-1.      Act as a financially sound corporate entity with high business ethics
-
-2.      Implement best human resource development practices to build a highly efficient, dedicated and   motivated workforce with high morale and moral values
-
-3.      Optimally utilize the information technology infrastructure
-
-4.      Provide excellent customer service 
-
-5.     Run the business profitably through prudent underwriting and efficient & proper claim management 
-
-6.     Effectively manage our reinsurance operations 
-
-7.     Effectively manage our investments for optimising yield 
-
-8.     Have effective risk management systems 
-
-9.     Improve the penetration of non-life insurance by proper underwriting, innovation & marketing
-
-10.   To evolve as a vibrant & dynamic leading non-life insurer
-
-The Financial Results for the FY 2020-21 reflect that our Company has registered a negative Growth Rate of -8.92 % on gross basis and underwritten Global Premium of Rs. 12747.42crores as against Rs. 13996.01crores in the year 2019-20. Our net premium was Rs. 11007crores in the year 2020-21 in comparison to Rs. 10988.69crores in the year 2019-20, registering a growth of 0.16%.
-The Operating Deficit, after taking into account the Policyholder’s income, amounted to Rs. 1232.82crores in the FY 2020-21 , as compared to a defict of Rs. 1382.75crores in 2019-20, mainly on account of Incurred Claims.
-
-This year, we recorded a loss before tax of Rs. 1512.05crores as compared to a loss of Rs. 1498.69crores in the last year as all the liabilities were accounted as per best actuarial estimates in the FY 2020-21 and the Company had no carryover of previous liabilities. We ended up with a loss after tax of Rs. 1525.44crores in the FY 2020-21 as compared to a loss of Rs. 1524.10crores in the year 2019-20.
-The Operating Expenses during the year 2020-21 amounted to Rs. 3042.81crores as compared to Rs. 3442.53crores in the year 2019-20 thus resulting in a decrease of Rs. 399.72crores.
-Our Foreign Operations of Nepal, Dubai, Kuwait & Qatar registered a Gross Premium of Rs. 297.71crores and a net surplus of Rs. 141.61crores in 2020-21 as against a Gross Premium of Rs. 323.36crores and a net deficit of Rs. 62.46crores in the year 2019-20.
-
-The Solvency margin as on 31.3.2021 stood at 1.52.
-
-The world renowned rating agency, AM BEST has also maintained our rating at “B++” (very good). We continue being consistently given the highest rating by CRISIL and ICRA also.
+ So what can you do with the Raspberry Pi?
+This book explores a number of things you can do with your Raspberry Pi, from controlling hardware with Python, to using it as
+a media centre, or building games in Scratch. The beauty of the Raspberry Pi is that it’s just a very tiny general-purpose
+computer (which may be a little slower than you’re used to for some desktop applications, but much better at some other stuff
+than a regular PC), so you can do anything you could do on a regular computer with it. In addition, the Raspberry Pi has
+powerful multimedia and 3D graphics capabilities, so it has the potential to be used as a games platform, and we very much hope
+to see people starting to write games for it.
+We think physical computing—building systems using sensors, motors, lights and microcontrollers—is something that gets
+overlooked in favour of pure software projects in a lot of instances, and it’s a shame, because physical computing is massive fun.
+To the extent that there’s any children’s computing movement at the moment, it’s a physical computing movement. The LOGO
+turtles that represented physical computing when we were kids are now fighting robots, quadcopters or parent-sensing bedroom
+doors, and we love it. However, the lack of General Purpose Input/Output (GPIO) on home PCs is a real handicap for many
+people getting started with robotics projects. The Raspberry Pi exposes GPIO so you can get to work straight away.
+I keep being surprised by ideas the community comes up with which wouldn’t have crossed my mind in a thousand years: the
+Australian school meteor-tracking project; the Boreatton Scouts in the UK and their robot, which is controlled via an
+electroencephalography headset (the world’s first robot controlled by Scouting brain waves); the family who are building a robot
+vacuum cleaner. And I’m a real space cadet, so reading about the people sending Raspberry Pis into near-earth orbit on rockets
+and balloons gives me goosebumps.
+Success for us would be another 1,000 people every year taking up Computer Science at the university level in the UK. That
+would not only be beneficial for the country, the software and hardware industries, and the economy; but it would be even more
+beneficial for every one of those 1,000 people, who, I hope, discover that there’s a whole world of possibilities and a great deal
