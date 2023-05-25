@@ -46,17 +46,15 @@ def main():
 
                 chain=load_qa_chain(llm=OpenAI(), chain_type="stuff")
             
-                with get_openai_callback() as cb:
-                    response=chain.run(input_documents=doc, question=quest)
-                    print("API key Cost :\n=> ",cb)
-
             alert=st.success('Done') 
-            time.sleep(3)     
-            alert.empty()        
+            time.sleep(2)     
+            alert.empty()       
 
+            with get_openai_callback() as cb:
+                response=chain.run(input_documents=doc, question=quest)
+                print("API key Cost :\n=> ",cb)
             st.write(response)
-            
-     
+
 
 if __name__ == '__main__':
     main()
